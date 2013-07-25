@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>featuretimeinprocess</title>
+
+    <script type="text/javascript" src="/apps/2.0rc1/sdk.js"></script>
+    <script type="text/javascript" src="https://rally1.rallydev.com/apps/2.0rc1/lib/analytics/analytics-all.js"></script>
+
+    <script type="text/javascript">
+        Rally.onReady(function () {
+                (function(Highcharts,UNDEFINED){var arrayMin=Highcharts.arrayMin,arrayMax=Highcharts.arrayMax,each=Highcharts.each,extend=Highcharts.extend,merge=Highcharts.merge,map=Highcharts.map,pick=Highcharts.pick,pInt=Highcharts.pInt,defaultPlotOptions=Highcharts.getOptions().plotOptions,seriesTypes=Highcharts.seriesTypes,extendClass=Highcharts.extendClass,splat=Highcharts.splat,wrap=Highcharts.wrap,Axis=Highcharts.Axis,Tick=Highcharts.Tick,Series=Highcharts.Series,colProto=seriesTypes.column.prototype,math=Math,mathRound=math.round,mathFloor=math.floor,mathCeil=math.ceil,mathMin=math.min,mathMax=math.max,noop=function(){};defaultPlotOptions.boxplot=merge(defaultPlotOptions.column,{fillColor:"#FFFFFF",lineWidth:1,medianWidth:2,states:{hover:{brightness:-.3}},threshold:null,tooltip:{pointFormat:'<span style="color:{series.color};font-weight:bold">{series.name}</span><br/>Minimum: {point.low}<br/>Lower quartile: {point.q1}<br/>Median: {point.median}<br/>Higher quartile: {point.q3}<br/>Maximum: {point.high}<br/>'},whiskerLength:"50%",whiskerWidth:2}),seriesTypes.boxplot=extendClass(seriesTypes.column,{type:"boxplot",pointArrayMap:["low","q1","median","q3","high"],toYData:function(point){return[point.low,point.q1,point.median,point.q3,point.high]},pointValKey:"high",pointAttrToOptions:{fill:"fillColor",stroke:"color","stroke-width":"lineWidth"},drawDataLabels:noop,translate:function(){var series=this,yAxis=series.yAxis,pointArrayMap=series.pointArrayMap;seriesTypes.column.prototype.translate.apply(series),each(series.points,function(point){each(pointArrayMap,function(key){null!==point[key]&&(point[key+"Plot"]=yAxis.translate(point[key],0,1,0,1))})})},drawPoints:function(){var series=this,points=series.points,options=series.options,chart=series.chart,renderer=chart.renderer,pointAttr,q1Plot,q3Plot,highPlot,lowPlot,medianPlot,crispCorr,crispX,graphic,stemPath,stemAttr,boxPath,whiskersPath,whiskersAttr,medianPath,medianAttr,width,left,right,halfWidth,shapeArgs,color,doQuartiles=series.doQuartiles!==!1,whiskerLength=parseInt(series.options.whiskerLength,10)/100;each(points,function(point){graphic=point.graphic,shapeArgs=point.shapeArgs,stemAttr={},whiskersAttr={},medianAttr={},color=point.color||series.color,point.plotY!==UNDEFINED&&(pointAttr=point.pointAttr[point.selected?"selected":""],width=shapeArgs.width,left=mathFloor(shapeArgs.x),right=left+width,halfWidth=mathRound(width/2),q1Plot=mathFloor(doQuartiles?point.q1Plot:point.lowPlot),q3Plot=mathFloor(doQuartiles?point.q3Plot:point.lowPlot),highPlot=mathFloor(point.highPlot),lowPlot=mathFloor(point.lowPlot),stemAttr.stroke=point.stemColor||options.stemColor||color,stemAttr["stroke-width"]=pick(point.stemWidth,options.stemWidth,options.lineWidth),stemAttr.dashstyle=point.stemDashStyle||options.stemDashStyle,whiskersAttr.stroke=point.whiskerColor||options.whiskerColor||color,whiskersAttr["stroke-width"]=pick(point.whiskerWidth,options.whiskerWidth,options.lineWidth),medianAttr.stroke=point.medianColor||options.medianColor||color,medianAttr["stroke-width"]=pick(point.medianWidth,options.medianWidth,options.lineWidth),crispCorr=stemAttr["stroke-width"]%2/2,crispX=left+halfWidth+crispCorr,stemPath=["M",crispX,q3Plot,"L",crispX,highPlot,"M",crispX,q1Plot,"L",crispX,lowPlot,"z"],doQuartiles&&(crispCorr=pointAttr["stroke-width"]%2/2,crispX=mathFloor(crispX)+crispCorr,q1Plot=mathFloor(q1Plot)+crispCorr,q3Plot=mathFloor(q3Plot)+crispCorr,left+=crispCorr,right+=crispCorr,boxPath=["M",left,q3Plot,"L",left,q1Plot,"L",right,q1Plot,"L",right,q3Plot,"L",left,q3Plot,"z"]),whiskerLength&&(crispCorr=whiskersAttr["stroke-width"]%2/2,highPlot+=crispCorr,lowPlot+=crispCorr,whiskersPath=["M",crispX-halfWidth*whiskerLength,highPlot,"L",crispX+halfWidth*whiskerLength,highPlot,"M",crispX-halfWidth*whiskerLength,lowPlot,"L",crispX+halfWidth*whiskerLength,lowPlot]),crispCorr=medianAttr["stroke-width"]%2/2,medianPlot=mathRound(point.medianPlot)+crispCorr,medianPath=["M",left,medianPlot,"L",right,medianPlot,"z"],graphic?(point.stem.animate({d:stemPath}),whiskerLength&&point.whiskers.animate({d:whiskersPath}),doQuartiles&&point.box.animate({d:boxPath}),point.medianShape.animate({d:medianPath})):(point.graphic=graphic=renderer.g().add(series.group),point.stem=renderer.path(stemPath).attr(stemAttr).add(graphic),whiskerLength&&(point.whiskers=renderer.path(whiskersPath).attr(whiskersAttr).add(graphic)),doQuartiles&&(point.box=renderer.path(boxPath).attr(pointAttr).add(graphic)),point.medianShape=renderer.path(medianPath).attr(medianAttr).add(graphic)))})}}),defaultPlotOptions.errorbar=merge(defaultPlotOptions.boxplot,{color:"#000000",grouping:!1,linkedTo:":previous",tooltip:{pointFormat:defaultPlotOptions.arearange.tooltip.pointFormat},whiskerWidth:null}),seriesTypes.errorbar=extendClass(seriesTypes.boxplot,{type:"errorbar",pointArrayMap:["low","high"],toYData:function(point){return[point.low,point.high]},pointValKey:"high",doQuartiles:!1,getColumnMetrics:function(){return this.linkedParent&&this.linkedParent.columnMetrics||seriesTypes.column.prototype.getColumnMetrics.call(this)}})})(Highcharts);
+                function Months(startOn,endBefore,timezone){for(var cursor=new Time(startOn).inGranularity(Time.MONTH),end=new Time(endBefore).inGranularity(Time.MONTH),categories=[];cursor.lessThanOrEqual(end);)categories.push(""+cursor),cursor=cursor.add(1);this.categories=categories,this.label="Months",this.field="_ValidTo",this.categorize=function(value){return""+new Time(value._ValidTo_lastValue,Time.MONTH,timezone).inGranularity(Time.MONTH)}}function Quarters(startOn,endBefore,timezone){for(var cursor=new Time(startOn).inGranularity(Time.QUARTER),end=new Time(endBefore).inGranularity(Time.QUARTER),categories=[];cursor.lessThanOrEqual(end);)categories.push(""+cursor),cursor=cursor.add(1);this.categories=categories,this.label="Quarters",this.field="_ValidTo",this.categorize=function(value){return""+new Time(value._ValidTo_lastValue,Time.QUARTER,timezone).inGranularity(Time.QUARTER)}}function FiscalQuarters(startOn,endBefore,timezone){this.label="Fiscal Quarters",this.field="_ValidTo",this.categorize=function(value){var validToTimeString=value._ValidTo_lastValue||value,calendarQuarter=new Time(validToTimeString,Time.QUARTER,timezone).inGranularity(Time.QUARTER),calendarQuarterStart=calendarQuarter.inGranularity(Time.MONTH),fiscalQuarterStart=calendarQuarterStart.add(1),validTo=new Time(validToTimeString,Time.MONTH,timezone).inGranularity(Time.MONTH),quarter;quarter=validTo.lessThan(fiscalQuarterStart)?calendarQuarter.add(-1):calendarQuarter;var year=""+(quarter.year+1);return"FY"+year.substring(2)+"Q"+quarter.quarter};for(var cursor=new Time(startOn).inGranularity(Time.QUARTER),end=new Time(endBefore).inGranularity(Time.QUARTER),categories=[];cursor.lessThanOrEqual(end);)categories.push(this.categorize(""+cursor)),cursor=cursor.add(1);this.categories=categories}function StoryPoints(){this.categories=["&lt; 1","2","3","5","8","&gt; 8"],this.label="Story Points",this.field="PlanEstimate",this.categorize=function(value){var p=value.PlanEstimate_lastValue;return 1>p?"&lt; 1":2>=p?"2":3>=p?"3":5>=p?"5":8>=p?"8":p>8?"&gt; 8":void 0}}function FeatureSize(){this.categories=["Extra Small","Small","Medium","Large","Extra Large","Unestimated"],this.label="Feature Size",this.field="PreliminaryEstimate";var sizes={4484657773:"Extra Small",4484657774:"Small",4484657775:"Medium",4484657776:"Large",4484657777:"Extra Large"};this.categorize=function(value){return sizes[value.PreliminaryEstimate_lastValue]||"Unestimated"}}function Feature(){var typeHierarchy="PortfolioItem/Feature";this.progressPredicate=function(){return{_TypeHierarchy:typeHierarchy,State:"In Dev",PercentDoneByStoryCount:{$lt:1,$gt:0}}},this.completePredicate=function(){return{_TypeHierarchy:typeHierarchy,$or:[{State:{$gt:"In Dev"}},{PercentDoneByStoryCount:{$gte:1}}]}}}function HierarchicalRequirement(){var typeHierarchy="HierarchicalRequirement";this.progressPredicate=function(){return{_TypeHierarchy:typeHierarchy,ScheduleState:{$gte:"In-Progress",$lt:"Accepted"},Children:null}},this.completePredicate=function(){return{_TypeHierarchy:typeHierarchy,ScheduleState:{$gte:"Accepted"},Children:null}}}
+                
+
 //Get reference to Lumenize
 var Lumenize = window.parent.Rally.data.lookback.Lumenize,
     OLAPCube = Lumenize.OLAPCube,
@@ -196,7 +210,7 @@ Ext.define('CustomApp', {
         endBefore: new Time(new Date()).inGranularity(Time.MONTH).toString(),
         //xAxis: 'month',
         //type: 'PortfolioItem/Feature'
-        xAxis: 'day',
+        xAxis: 'storyPoints',
         type: 'HierarchicalRequirement'
     },
 
@@ -609,3 +623,24 @@ Ext.define('CustomApp', {
         ];
     }
 });
+
+
+
+            Rally.launchApp('CustomApp', {
+                name:"featuretimeinprocess",
+                parentRepos:""
+            });
+
+        });
+    </script>
+
+
+    <style type="text/css">
+        .app {
+     /* Add app styles here */
+}
+
+    </style>
+</head>
+<body></body>
+</html>
